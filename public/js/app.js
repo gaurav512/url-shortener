@@ -21,11 +21,11 @@ const postData = async (url, data) => {
 myForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    const url = urlField.value
+    const data = encodeURI(urlField.value)
 
     message.innerHTML = 'Loading...'    
 
-    postData('', { url })
+    postData('', { data })
         .then(data => {
             if(data.error) {
                 message.innerHTML = data.error
