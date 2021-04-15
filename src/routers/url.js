@@ -6,7 +6,6 @@ const cryptoRandomString = require('crypto-random-string')
 
 // GET
 router.get('/:url', async (req, res) => {
-    
     const url = req.params.url
     try {
         const found = await Url.findOne({ shortenedURL: url })
@@ -16,7 +15,6 @@ router.get('/:url', async (req, res) => {
                 error: 'Given short url does not exist in our database'
             })
         }
-
         res.status(301).redirect(found.url)
     }
     catch(e) {
@@ -33,7 +31,7 @@ router.post('', async (req, res) => {
         "Access-Control-Allow-Origin": "*",
     })
     
-    const _url = encodeURI(req.body.data)
+    let _url = encodeURI(req.body.data)
     const found = await Url.findOne({ url: _url })
     
     // If the given url already has a shortened version in our database
@@ -51,6 +49,10 @@ router.post('', async (req, res) => {
             break
     }
 
+    if(!_url.includes('http://') && !_url.includes('https://'))
+    {
+        _url = 'http://' + _url
+    }
     // Creating a new document
     const url = new Url({
         url: _url,
