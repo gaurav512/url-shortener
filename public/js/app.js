@@ -39,7 +39,7 @@ myForm.addEventListener('submit', (e) => {
         })   
 })
 
-function copyToClipboard(element) {
+const copyToClipboard = element => {
     // Copy
     var $temp = $("<input>")
     $("body").append($temp)
@@ -48,4 +48,3 @@ function copyToClipboard(element) {
     $temp.remove()    
     alert("Your short URL has been copied to clipboard!")
 }
-  
