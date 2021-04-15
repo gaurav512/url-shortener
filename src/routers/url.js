@@ -32,6 +32,11 @@ router.post('', async (req, res) => {
     })
     
     let _url = encodeURI(req.body.data)
+    if(!_url.includes('http://') && !_url.includes('https://'))
+    {
+        _url = 'http://' + _url
+    }
+
     const found = await Url.findOne({ url: _url })
     
     // If the given url already has a shortened version in our database
@@ -49,10 +54,6 @@ router.post('', async (req, res) => {
             break
     }
 
-    if(!_url.includes('http://') && !_url.includes('https://'))
-    {
-        _url = 'http://' + _url
-    }
     // Creating a new document
     const url = new Url({
         url: _url,
