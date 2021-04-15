@@ -4,6 +4,7 @@ const myForm = document.querySelector('form')
 const urlField = document.querySelector('input')
 
 const message = document.getElementById('short-url')
+const copyButton = document.getElementById('copy-button')
 
 
 const postData = async (url, data) => {
@@ -31,8 +32,20 @@ myForm.addEventListener('submit', (e) => {
                 message.innerHTML = data.error
             }
             else {
-                message.innerHTML = data.shortenedURL
+                document.getElementById('declare').innerHTML = 'Your url:'
+                message.innerHTML =  data.shortenedURL
+                copyButton.style.visibility = "visible";
             }
         })   
 })
 
+function copyToClipboard(element) {
+    // Copy
+    var $temp = $("<input>")
+    $("body").append($temp)
+    $temp.val($(element).text()).select()
+    document.execCommand("copy")
+    $temp.remove()    
+    alert("Your short URL has been copied to clipboard!")
+}
+  

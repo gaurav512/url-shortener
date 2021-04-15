@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shorten your URLs</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" href="./img/favicon.png">
+    <title>RedUrl: Shorten your URLs</title>
 </head>
 <body>
-    <h1>Hey there!</h1>
-    <div>
+    <div class="heading">
+        <img src="./img/logo.png" alt="Logo">    
+    </div>
+
+    <div class="container">
         <form>
-            <input type="text" placeholder="Your url...">
+            <input type="text" placeholder="Your long url">
             <button>Shorten</button>
         </form>
+        <p id="declare"></p>
         <p id="short-url"></p>
+        <button id="copy-button" onclick="copyToClipboard('#short-url')">Copy short url</button>
+           
     </div>
+    
     <script src="js/app.js"></script>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></body>
 </html>
