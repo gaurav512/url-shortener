@@ -50,6 +50,8 @@ router.post('', async (req, res) => {
         if(!alreadyExist)
             break
     }
+
+    // Creating a new document
     const url = new Url({
         url: _url,
         shortenedURL: short_url_string
